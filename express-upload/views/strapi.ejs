@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+
+
+    <form method="post" enctype="multipart/form-data" action="http://127.0.0.1:1337/upload">
+        <br>files:<input type="file" name="files">
+        <br>refId:<input type="text" name="refId" style="width:300px">
+        <br>ref:<input type="text" name="ref" value="wxmedia">
+        <br>field:<input type="text" name="field" value="media">
+        <input type="submit" value="上传">
+    </form>
+
+  </body>
+</html>
