@@ -62,3 +62,6 @@ typings/
 
 #idea ignore
 .idea
+
+# package-lock.json  ignore
+package-lock.json
