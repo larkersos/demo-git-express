@@ -6,8 +6,8 @@
 </head>
 <body>
 <form action="/school/search" method="post">
-  年份：<input type="number" name="year" value="<%= year %>"><br>
-  学期：<input type="number" name="term" value="<%= term %>"><br>
+  年份：<input type="number" name="year" value="<%= condition.year %>"><br>
+  学期：<input type="number" name="term" value="<%= condition.term %>"><br>
   <input type="submit" value="查询">
   <a href="/school/toAdd">添加</a>
 </form>

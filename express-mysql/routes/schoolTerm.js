@@ -4,6 +4,9 @@ var router = express.Router();
 var db = require("../config/db");
 var dbConnection = require("../config/db-connection");
 
+var SchoolTerm = require("../models/SchoolTerm").schoolTerm;
+// var SchoolTerm = require("../models/SchoolTerm");
+
 var tableName = "school_term";
 
 /* GET users listing. */
@@ -14,12 +17,16 @@ router.get('/', function(req, res, next) {
   let connection = dbConnection.connection();
   let sqlString = "select * from "+tableName;
   dbConnection.execute(connection,sqlString,null,function(err,rows){
+     var condition = new SchoolTerm();
+      condition.year=2018;
+      condition.term=1;
+
       if(err){
         console.log("=======err:"+JSON.stringify(err));
-        res.render("school/list",{title:"列表",year:"",term:"",dataList:[]});
+        res.render("school/list",{title:"列表",condition:condition,dataList:[]});
       }else {
         console.log("=======rows:"+JSON.stringify(rows));
-        res.render("school/list",{title:"列表",year:"",term:"",dataList:rows});
+        res.render("school/list",{title:"列表",condition:condition,dataList:rows});
       }
   });
   dbConnection.close(connection);
@@ -97,7 +104,7 @@ router.post("/search",function(req,res,next){
 
   var condition = " where 1=1 "
   if(year){
-    condition += " adn year = '"+ year +"'";
+    condition += " and year = '"+ year +"'";
   }
   if(term){
     condition += " and term = '" + term + "'";
@@ -108,7 +115,10 @@ router.post("/search",function(req,res,next){
     if(err){
       res.send("查询失败: "+err);
     }else{
-      res.render("school/list",{title:"列表",dataList:rows,year:year,term:term});
+      var condition = new SchoolTerm();
+      condition.year=year;
+      condition.term=term;
+      res.render("school/list",{title:"列表",dataList:rows,condition:condition});
     }
   });
 })
