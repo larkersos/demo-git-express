@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+</head>
+<body>
+<form action="/school/search" method="post">
+  年份：<input type="number" name="year" value="<%= year %>"><br>
+  学期：<input type="number" name="term" value="<%= term %>"><br>
+  <input type="submit" value="查询">
+  <a href="/school/toAdd">添加</a>
+</form>
+<% if(typeof dataList !== 'undefined') {%>
+<table>
+  <tr>
+    <th>编号</th>
+    <th>年份</th>
+    <th>学期</th>
+    <th>操作</th>
+  </tr>
+
+  <% for(var i = 0; i < dataList.length; i++) {%>
+  <tr>
+    <td><%= dataList[i].id %></td>
+    <td><%= dataList[i].year %></td>
+    <td><%= dataList[i].term %></td>
+    <td>
+      <a href="/school/del/<%= dataList[i].id %>">删除</a>
+      <a href="/school/toUpdate/<%= dataList[i].id %>">修改</a>
+    </td>
+  </tr>
+  <% } %>
+</table>
+<% } %>
+</body>
+</html>

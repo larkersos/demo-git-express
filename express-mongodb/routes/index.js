@@ -6,20 +6,18 @@ var crypto = require('crypto'),
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { "title": '主页Exoress',"pageTitle":'2018 Express'});
+  res.render('index', { title: '主页' });
 });
 
 /* GET regist. */
 router.get('/reg', function(req, res, next) {
-  res.render('reg', { title: '注册'});
+  res.render('reg', { title: '注册页' });
 });
 /* POST regist. */
-router.post('/reg', function(req, res) {
+router.post('/reg', function(req, res, next) {
   var name = req.body.name,
       password = req.body.password,
       password_re = req.body['password-repeat'];
-  console.log("req:"+req);
-
   //检验用户两次输入的密码是否一致
   if (password_re != password) {
     req.flash('error', '两次输入的密码不一致!');
